@@ -1,0 +1,12 @@
+- name: Setup oseary service requirements
+  hosts: oseary-service
+  remote_user: root
+  roles:
+  - virtualenv
+  - supervisor
+  tasks:
+  - name: Create user oseary
+    user: name=oseary shell=/bin/bash password=$6$0AI7khXlSjnM1f$MnTDDOM4Zmh.XE9jltaZdciB4QkdeBZD5AYTjGaZBL6sYWaFXd9.t/L1sMkzoceYz5d5NjNRVzhFqfGrSTmY20
+
+  - name: Copy supervisor conf for service
+    copy: src=/home/brett/dev/ansible_configs/service_management/oseary.conf dest=/etc/supervisor/conf.d/oseary.conf owner=root group=root mode=644

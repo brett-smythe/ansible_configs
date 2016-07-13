@@ -1,5 +1,0 @@
-- hosts: rabbit-host
-  remote_user: root
-  tasks:
-  - name: Update to latest version of rabbitmq server
-    apt: name=rabbitmq-server state=latest

@@ -1,0 +1,18 @@
+- name: Setup interns service requirements
+  hosts: rabbitmq-host
+  remote_user: root
+  tasks:
+  - name: Install rabbitmq
+    apt: name=rabbitmq-server state=latest update_cache=yes
+
+  hosts: interns-service
+  remote_user: root
+  roles:
+  - virtualenv
+  - supervisor
+  tasks:
+  - name: Create interns user
+    user: name=interns shell=/bin/bash password=$6$X65HxwxncnLq2u$7RU2FxqQFVPcmTT0ubNvNZTewEUORB1xT4lnmx/7dLn7rG54N6QmZdP5.mJKSain6L1xwCzoc.XyP79uGcxo.1
+
+  - name: Copy supervisor conf for service
+    copy: src=/home/brett/dev/ansible_configs/service_management/interns.conf dest=/etc/supervisor/conf.d/interns.conf owner=root group=root mode=644

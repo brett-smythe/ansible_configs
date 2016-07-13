@@ -1,0 +1,8 @@
+- name: Install postgresql
+  apt: name=postgresql state=latest update_cache=yes
+
+- name: Install libpq-dev to manage postgresql
+  apt: name=libpq-dev state=latest
+
+- name: Install python-psycopg2 to manage postgresql
+  apt: name=python-psycopg2 state=latest

@@ -1,0 +1,22 @@
+- name: Setup eleanor service requirements
+  hosts: api-db
+  remote_user: root
+  roles:
+  - postgresql
+  tasks:
+  - name: Add eleanor user to Postgres
+  - lineinfile: dest=/etc/postgresql/9.4/main/pg_hba.conf regexp="^hosts+alls+alls+192.168.2.0/24s+md5$" insertafter="^#sIPv4slocal.+" line="host     all             all            192.168.2.0/24          md5"
+  - postgresql_user: name=eleanor password="is there life on mars"
+  - postgresql_db: name=eleanor owner=eleanor
+
+  hosts: eleanor-service
+  remote_user: root
+  roles:
+  - virtualenv
+  - supervisor
+  tasks:
+  - name: Create user eleanor
+    user: name=eleanor shell=/bin/bash password=$6$Noqb1/cqYh$GslCHsq9IpFZUGMXI4isCTySVGtUXdVJrU2oIQlfznSm33eykkpiwbGCaGHFTFZxR6prrx.gf7uflWcbnxb/v1
+
+  - name: Copy supervisor conf for service 
+    copy: src=/home/brett/dev/ansible_configs/service_management/eleanor.conf dest=/etc/supervisor/conf.d/eleanor.conf owner=root group=root mode=644
