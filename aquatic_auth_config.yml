@@ -1,0 +1,29 @@
+- name: Setup auth for eleanor
+  hosts: eleanor-service
+  remote_user: root
+  tasks:
+  - name: Create directory for eleanor auth config
+    file: path=/etc/opt/eleanor state=directory owner=eleanor group=eleanor
+
+  - name: Copying eleanor auth config
+    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/eleanor/eleanor_auth.cfg owner=eleanor group=eleanor mode=0740
+
+- name: Setup auth for interns
+  hosts: interns-service
+  remote_user: root
+  tasks:
+  - name: Create directory for interns auth config
+    file: path=/etc/opt/interns state=directory owner=interns group=interns
+
+  - name: Copying interns auth config
+    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/interns/interns_auth.cfg owner=interns group=interns mode=0740
+
+- name: Setup auth for oseary
+  hosts: oseary-service
+  remote_user: root
+  tasks:
+  - name: Create directory for oseary auth config
+    file: path=/etc/opt/oseary state=directory owner=oseary group=oseary
+
+  - name: Copying oseary auth config
+    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/oseary/oseary_auth.cfg owner=oseary group=oseary mode=0740
