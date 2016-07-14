@@ -1,4 +1,5 @@
 - name: Restart the interns service
+  hosts: interns-service
   remote_user: interns
   tasks:
     - name: Restart interns

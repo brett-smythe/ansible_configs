@@ -1,4 +1,5 @@
 - name: Restart the oseary service
+  hosts: oseary-service
   remote_user: oseary
   tasks:
     - name: Restart oseary

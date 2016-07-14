@@ -1,4 +1,5 @@
 - name: Restart the eleanor service
+  hosts: eleanor-service
   remote_user: eleanor
   tasks:
     - name: Restart eleanor
