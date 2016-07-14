@@ -1,0 +1,8 @@
+- name: Add aquatic user group for services to execute on
+  group: name=aquatic
+
+- name: Setup supervisor.conf to allow aquatic group to control services
+  copy: src=../../../service_management/supervisor.conf dest=/etc/supervisor/supervisor.conf owner=root group=root mode=644
+
+- name: Setup supervisord.conf to allow aquatic group to control services
+  copy: src=../../../service_management/supervisor.conf dest=/etc/supervisor/supervisord.conf owner=root group=root mode=644

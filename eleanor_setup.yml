@@ -14,9 +14,17 @@
   roles:
   - virtualenv
   - supervisor
+  - aquatic_group
   tasks:
   - name: Create user eleanor
-    user: name=eleanor shell=/bin/bash password=$6$Noqb1/cqYh$GslCHsq9IpFZUGMXI4isCTySVGtUXdVJrU2oIQlfznSm33eykkpiwbGCaGHFTFZxR6prrx.gf7uflWcbnxb/v1
+    user: name=eleanor shell=/bin/bash password=$6$Noqb1/cqYh$GslCHsq9IpFZUGMXI4isCTySVGtUXdVJrU2oIQlfznSm33eykkpiwbGCaGHFTFZxR6prrx.gf7uflWcbnxb/v1 group=aquatic generate_ssh_key=yes
 
   - name: Copy supervisor conf for service 
-    copy: src=/home/brett/dev/ansible_configs/service_management/eleanor.conf dest=/etc/supervisor/conf.d/eleanor.conf owner=root group=root mode=644
+    copy: src=service_management/eleanor.conf dest=/etc/supervisor/conf.d/eleanor.conf owner=root group=root mode=644
+
+  - name: Allow eleanor to manage it's service
+    lineinfile: dest=/etc/sudoers regexp="^%eleanor\s+ALL=\s+NOPASSWD:\s+/usr/bin/supervisorctl$" line="%eleanor ALL= NOPASSWD{{ ':' }} /usr/bin/supervisorctl"
+
+  - name: Reload new supervisor config
+    command: supervisorctl reread
+

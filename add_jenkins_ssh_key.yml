@@ -1,0 +1,87 @@
+- name: Add Jenkins ssh keys where needed for deploy purposes
+  hosts: web-db
+  remote_user: root
+  tasks:
+    - name: Add jenkins ssh key to root keys
+      authorized_key:
+        user: root
+        key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}" 
+
+- name: Add Jenkins ssh keys where needed for deploy purposes
+  hosts: api-db
+  remote_user: root
+  tasks:
+    - name: Add jenkins ssh key to root keys
+      authorized_key:
+        user: root
+        key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}" 
+
+- name: Add Jenkins ssh keys where needed for deploy purposes
+  hosts: rabbitmq-host
+  remote_user: root
+  tasks:
+    - name: Add jenkins ssh key to root keys
+      authorized_key:
+        user: root
+        key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}" 
+
+- name: Add Jenkins ssh keys where needed for deploy purposes
+  hosts: eleanor-service
+  remote_user: root
+  tasks:
+    - name: Add jenkins ssh key to root keys
+      authorized_key:
+        user: root
+        key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}" 
+
+- name: Add Jenkins ssh keys where needed for deploy purposes
+  hosts: interns-service
+  remote_user: root
+  tasks:
+    - name: Add jenkins ssh key to root keys
+      authorized_key:
+        user: root
+        key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}" 
+
+- name: Add Jenkins ssh keys where needed for deploy purposes
+  hosts: oseary-service
+  remote_user: root
+  tasks:
+    - name: Add jenkins ssh key to root keys
+      authorized_key:
+        user: root
+        key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}" 
+
+- name: Add Jenkins ssh keys where needed for deploy purposes
+  hosts: steve-zissou-service
+  remote_user: root
+  tasks:
+    - name: Add jenkins ssh key to root keys
+      authorized_key:
+        user: root
+        key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}" 
+
+
+  hosts: eleanor-service
+  remote_user: root
+  tasks:
+    - name: Add jenkins ssh key to eleanor keys
+      authorized_key:
+        user: eleanor
+        key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}"
+  
+  hosts: interns-service
+  remote_user: root
+  tasks:
+    - name: Add jenkins ssh key to interns keys
+      authorized_key:
+        user: interns
+        key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}"
+
+  hosts: oseary-service
+  remote_user: root
+  tasks:
+    - name: Add jenkins ssh key to oseary keys
+      authorized_key:
+        user: oseary
+        key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}"

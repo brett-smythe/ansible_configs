@@ -1,0 +1,5 @@
+- name: Restart the interns service
+  remote_user: interns
+  tasks:
+    - name: Restart interns
+      supervisorctl: name=interns state=restarted
