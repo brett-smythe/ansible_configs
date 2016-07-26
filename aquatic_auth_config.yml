@@ -3,27 +3,40 @@
   remote_user: root
   tasks:
   - name: Create directory for eleanor auth config
-    file: path=/etc/opt/eleanor state=directory owner=eleanor group=eleanor
+    file: path=/etc/opt/eleanor state=directory owner=eleanor group=aquatic
 
   - name: Copying eleanor auth config
-    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/eleanor/eleanor_auth.cfg owner=eleanor group=eleanor mode=0740
+    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/eleanor/eleanor_auth.cfg owner=eleanor group=aquatic mode=0740
 
 - name: Setup auth for interns
   hosts: interns-service
   remote_user: root
   tasks:
   - name: Create directory for interns auth config
-    file: path=/etc/opt/interns state=directory owner=interns group=interns
+    file: path=/etc/opt/interns state=directory owner=interns group=aquatic
 
   - name: Copying interns auth config
-    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/interns/interns_auth.cfg owner=interns group=interns mode=0740
+    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/interns/interns_auth.cfg owner=interns group=aquatic mode=0740
+
+  - name: Create directory for interns-tasks auth config
+    file: path=/etc/opt/interns_tasks state=directory owner=nobody group=aquatic
+
+  - name: Copying interns-tasks auth config
+    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/interns_tasks/interns_tasks_auth.cfg owner=nobody group=aquatic mode=0740
 
 - name: Setup auth for oseary
   hosts: oseary-service
   remote_user: root
   tasks:
   - name: Create directory for oseary auth config
-    file: path=/etc/opt/oseary state=directory owner=oseary group=oseary
+    file: path=/etc/opt/oseary state=directory owner=oseary group=aquatic
 
   - name: Copying oseary auth config
-    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/oseary/oseary_auth.cfg owner=oseary group=oseary mode=0740
+    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/oseary/oseary_auth.cfg owner=oseary group=aquatic mode=0740
+
+  - name: Create directory for interns-tasks auth config
+    file: path=/etc/opt/interns_tasks state=directory owner=nobody group=aquatic
+
+  - name: Copying interns-tasks auth config
+    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/interns_tasks/interns_tasks_auth.cfg owner=nobody group=aquatic mode=0740
+
