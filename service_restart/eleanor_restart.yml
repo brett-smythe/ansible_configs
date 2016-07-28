@@ -3,4 +3,6 @@
   remote_user: eleanor
   tasks:
     - name: Restart eleanor
-      supervisorctl: name=eleanor state=restarted
+      supervisorctl: name=eleanor state=stopped
+    - name: Restart eleanor
+      supervisorctl: name=eleanor state=started

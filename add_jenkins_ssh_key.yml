@@ -62,6 +62,7 @@
         key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}" 
 
 
+- name: Add Jenkins ssh keys where needed for deploy purposes
   hosts: eleanor-service
   remote_user: root
   tasks:
@@ -70,6 +71,7 @@
         user: eleanor
         key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}"
   
+- name: Add Jenkins ssh keys where needed for deploy purposes
   hosts: interns-service
   remote_user: root
   tasks:
@@ -78,6 +80,7 @@
         user: interns
         key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}"
 
+- name: Add Jenkins ssh keys where needed for deploy purposes
   hosts: oseary-service
   remote_user: root
   tasks:
