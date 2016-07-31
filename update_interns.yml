@@ -1,0 +1,6 @@
+- name: Update to latest version of interns
+  hosts: interns-service
+  remote_user: root
+  tasks:
+  - name: Updating interns to the latest version
+  apt: name=interns state=latest update_cache=yes

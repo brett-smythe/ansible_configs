@@ -2,7 +2,7 @@
   hosts: eleanor-service
   remote_user: eleanor
   tasks:
-    - name: Restart eleanor
+    - name: Stop eleanor
       supervisorctl: name=eleanor state=stopped
     - name: Restart eleanor
       supervisorctl: name=eleanor state=started
