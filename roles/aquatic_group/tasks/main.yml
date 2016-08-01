@@ -9,6 +9,3 @@
 
 - name: Add sources for the aquatic services
   copy: src=../../../aquatic_sources/aptly.list dest=/etc/apt/sources.list.d/aptly.list owner=root group=root mode=644
-
-- name: Add pubkey for aquatice services
-  apt_key: data="{{ lookup('file', '../../../aquatic_sources/pubkey.asc') }}" state=present
