@@ -2,5 +2,7 @@
   hosts: interns-service
   remote_user: root
   tasks:
+  - name: Updating apt
+    apt: update_cache=yes
   - name: Updating interns to the latest version
-    apt: name=interns state=latest update_cache=yes allow_unauthenticated=yes
+    command: apt-get --allow-unauthenticated install interns

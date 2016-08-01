@@ -2,5 +2,7 @@
   hosts: eleanor-service
   remote_user: root
   tasks:
+  - name: Updating apt
+    apt: update_cache=yes
   - name: Updating eleanor to the latest version
-    apt: name=eleanor state=latest update_cache=yes allow_unauthenticated=yes
+    command: apt-get --allow-unauthenticated install eleanor
