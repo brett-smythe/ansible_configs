@@ -1,0 +1,2 @@
+deb http://192.168.2.104:8082/ jessie main
+deb http://debian-laptop:8082/ jessie main
