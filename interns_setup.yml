@@ -24,3 +24,21 @@
   - name: Reload new supervisor config
     command: supervisorctl reread
 
+  hosts: interns-scheduler
+  remote_user: root
+  roles:
+  - virtualenv
+  - supervisor
+  - aquatic_group
+  tasks:
+  - name: Create interns user
+    user: name=interns shell=/bin/bash password=$6$X65HxwxncnLq2u$7RU2FxqQFVPcmTT0ubNvNZTewEUORB1xT4lnmx/7dLn7rG54N6QmZdP5.mJKSain6L1xwCzoc.XyP79uGcxo.1 group=aquatic generate_ssh_key=yes
+
+  - name: Copy supervisor conf for service
+    copy: src=service_management/interns-scheduler.conf dest=/etc/supervisor/conf.d/interns-scheduler.conf owner=root group=root mode=644
+
+  - name: Allow interns to manage its service
+    lineinfile: dest=/etc/sudoers regexp="^%interns\s+ALL=\s+NOPASSWD:\s+/usr/bin/supervisorctl$" line="%interns ALL= NOPASSWD{{ ':' }} /usr/bin/supervisorctl"
+
+  - name: Reload new supervisor config
+    command: supervisorctl reread
