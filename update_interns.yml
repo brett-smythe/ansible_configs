@@ -6,3 +6,10 @@
     apt: update_cache=yes
   - name: Updating interns to the latest version
     command: apt-get --allow-unauthenticated install interns
+- hosts: interns-scheduler
+  remote_user: root
+  tasks:
+  - name: Updating apt
+    apt: update_cache=yes
+  - name: Updating interns to the latest version
+    command: apt-get --allow-unauthenticated install interns

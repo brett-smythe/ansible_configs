@@ -1,0 +1,8 @@
+- name: Restart the interns scheduler service
+  hosts: interns-scheduler
+  remote_user: interns
+  tasks:
+    - name: Stop interns-scheduler
+      supervisorctl: name=interns-scheduler state=stopped
+    - name: Restart interns-scheduler
+      supervisorctl: name=interns-scheduler state=started
