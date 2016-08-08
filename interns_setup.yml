@@ -1,5 +1,5 @@
 - name: Setup interns-service service requirements
-- hosts: rabbitmq-host
+  hosts: rabbitmq-host
   remote_user: root
   tasks:
   - name: Install rabbitmq
