@@ -24,6 +24,16 @@
   - name: Copying interns-tasks auth config
     copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/interns_tasks/interns_tasks_auth.cfg owner=nobody group=aquatic mode=0740
 
+- name: Setup auth for interns
+  hosts: interns-scheduler
+  remote_user: root
+  tasks:
+  - name: Create directory for interns auth config
+    file: path=/etc/opt/interns state=directory owner=interns group=aquatic
+
+  - name: Copying interns auth config
+    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/interns/interns_auth.cfg owner=interns group=aquatic mode=0740
+
 - name: Setup auth for oseary
   hosts: oseary-service
   remote_user: root
