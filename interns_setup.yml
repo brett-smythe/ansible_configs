@@ -24,6 +24,9 @@
   - name: Reload new supervisor config
     command: supervisorctl reread
 
+  - name: Create logging directory for interns-service
+    file: path=/var/log/interns-service state=directory owner=interns group=aquatic
+
   hosts: interns-scheduler
   remote_user: root
   roles:
@@ -42,3 +45,6 @@
 
   - name: Reload new supervisor config
     command: supervisorctl reread
+
+  - name: Create logging directory for interns-scheduler
+    file: path=/var/log/interns-scheduler state=directory owner=interns group=aquatic
