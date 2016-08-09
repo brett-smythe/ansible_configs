@@ -1,5 +1,5 @@
 - name: Create user oseary                                                    
-user: name=oseary shell=/bin/bash password=$6$0AI7khXlSjnM1f$MnTDDOM4Zmh.XE9jltaZdciB4QkdeBZD5AYTjGaZBL6sYWaFXd9.t/L1sMkzoceYz5d5NjNRVzhFqfGrSTmY20 group=aquatic generate_ssh_key=yes 
+  user: name=oseary shell=/bin/bash password=$6$0AI7khXlSjnM1f$MnTDDOM4Zmh.XE9jltaZdciB4QkdeBZD5AYTjGaZBL6sYWaFXd9.t/L1sMkzoceYz5d5NjNRVzhFqfGrSTmY20 group=aquatic generate_ssh_key=yes 
 - name: Install python-pip
   apt: name=python-pip state=latest update_cache=yes
 
