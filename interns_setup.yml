@@ -32,10 +32,10 @@
     file: path=/var/log/interns-scheduler state=directory owner=interns group=aquatic
 
   - name: Copy diamond interns twitter timeline conf
-    copy: src=diamond/configs/InternsTwitterTimeline.conf dest=/etc/diamond/collectors/InternsTwitterTimeline.conf owner=oseary group=aquatic mode=644
+    copy: src=diamond/configs/InternsTwitterTimeline.conf dest=/etc/diamond/collectors/InternsTwitterTimelineCollector.conf owner=oseary group=aquatic mode=644
  
   - name: Copy diamond InternsTwitterTimeline collector
-    copy: src=diamond/collectors/InternsTwitterTimeline.py dest=/usr/share/diamond/collectors/InternsTwitterTimeline.py owner=oseary group=aquatic mode=644
+    copy: src=diamond/collectors/InternsTwitterTimeline.py dest=/usr/share/diamond/collectors/InternsTwitterTimelineCollector.py owner=oseary group=aquatic mode=644
 
 - name: Setup interns-scheduler service requirements                                 
   hosts: rabbitmq-host                                                             
@@ -71,7 +71,7 @@
     file: path=/var/log/interns-service state=directory owner=interns group=aquatic
 
   - name: Copy diamond interns twitter limits conf
-    copy: src=diamond/configs/InternsTwitterLimits.conf dest=/etc/diamond/collectors/InternsTwitterLimits.conf owner=oseary group=aquatic mode=644
+    copy: src=diamond/configs/InternsTwitterLimits.conf dest=/etc/diamond/collectors/InternsTwitterLimitsCollector.conf owner=oseary group=aquatic mode=644
 
   - name: Copy diamond InternsTwitterLimits collector
-    copy: src=diamond/collectors/InternsTwitterLimits.py dest=/usr/share/diamond/collectors/InternsTwitterLimits.py owner=oseary group=aquatic mode=644
+    copy: src=diamond/collectors/InternsTwitterLimits.py dest=/usr/share/diamond/collectors/InternsTwitterLimitsCollector.py owner=oseary group=aquatic mode=644
