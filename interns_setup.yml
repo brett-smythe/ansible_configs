@@ -31,6 +31,9 @@
   - name: Create logging directory for interns-scheduler
     file: path=/var/log/interns-scheduler state=directory owner=interns group=aquatic
 
+  - name: Install pytz for interns diamond collector
+    pip: name=pytz
+
   - name: Copy diamond interns twitter timeline conf
     copy: src=diamond/configs/InternsTwitterTimelineCollector.conf dest=/etc/diamond/collectors/InternsTwitterTimelineCollector.conf owner=oseary group=aquatic mode=644
  
@@ -69,6 +72,9 @@
 
   - name: Create logging directory for interns-service
     file: path=/var/log/interns-service state=directory owner=interns group=aquatic
+
+  - name: Install pytz for interns diamond collector
+    pip: name=pytz
 
   - name: Copy diamond interns twitter limits conf
     copy: src=diamond/configs/InternsTwitterLimitsCollector.conf dest=/etc/diamond/collectors/InternsTwitterLimitsCollector.conf owner=oseary group=aquatic mode=644
