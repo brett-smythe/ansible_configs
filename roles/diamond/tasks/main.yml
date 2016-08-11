@@ -47,3 +47,9 @@
 
 - name: Copy diamond memory collector
   copy: src=../../../diamond/collectors/memory.py dest=/usr/share/diamond/collectors/memory.py owner=oseary group=aquatic mode=644
+
+- name: Add bin for diamond supervisor
+  copy: src=../../../service_binds/diamond_manager dest=/usr/local/ dest=/usr/local/bin/diamond_manager owner=root group=staff mode=755
+
+- name: Add supervisor conf for diamond
+  copy: src=../../../service_management/diamond.conf dest=/etc/supervisor/conf.d/diamond.conf owner=root group=root mode=644

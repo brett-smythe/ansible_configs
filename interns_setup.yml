@@ -22,9 +22,6 @@
   - name: Allow interns to manage its service
     lineinfile: dest=/etc/sudoers regexp="^%interns\s+ALL=\s+NOPASSWD:\s+/usr/bin/supervisorctl$" line="%interns ALL= NOPASSWD{{ ':' }} /usr/bin/supervisorctl"
 
-  - name: Reload new supervisor config
-    command: supervisorctl reread
-
   - name: Create logging directory for interns-service
     file: path=/var/log/interns-service state=directory owner=interns group=aquatic
 
@@ -39,6 +36,9 @@
  
   - name: Copy diamond InternsTwitterTimeline collector
     copy: src=diamond/collectors/InternsTwitterTimelineCollector.py dest=/usr/share/diamond/collectors/InternsTwitterTimelineCollector.py owner=oseary group=aquatic mode=644
+
+  - name: Reload new supervisor config
+    command: supervisorctl reread
 
 - name: Setup interns-scheduler service requirements                                 
   hosts: rabbitmq-host                                                             
@@ -64,9 +64,6 @@
   - name: Allow interns to manage its service
     lineinfile: dest=/etc/sudoers regexp="^%interns\s+ALL=\s+NOPASSWD:\s+/usr/bin/supervisorctl$" line="%interns ALL= NOPASSWD{{ ':' }} /usr/bin/supervisorctl"
 
-  - name: Reload new supervisor config
-    command: supervisorctl reread
-
   - name: Create logging directory for interns-scheduler
     file: path=/var/log/interns-scheduler state=directory owner=interns group=aquatic
 
@@ -81,3 +78,7 @@
 
   - name: Copy diamond InternsTwitterLimits collector
     copy: src=diamond/collectors/InternsTwitterLimitsCollector.py dest=/usr/share/diamond/collectors/InternsTwitterLimitsCollector.py owner=oseary group=aquatic mode=644
+
+  - name: Reload new supervisor config
+    command: supervisorctl reread
+
