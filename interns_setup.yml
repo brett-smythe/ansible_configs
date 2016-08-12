@@ -25,6 +25,9 @@
   - name: Create logging directory for interns-service
     file: path=/var/log/interns-service state=directory owner=interns group=aquatic
 
+  - name: Create logging directory for interns-scheduler
+    file: path=/var/log/interns-scheduler state=directory owner=interns group=aquatic
+
   - name: Install pytz for interns diamond collector
     pip: name=pytz
 
@@ -63,6 +66,9 @@
 
   - name: Create logging directory for interns-scheduler
     file: path=/var/log/interns-scheduler state=directory owner=interns group=aquatic
+
+  - name: Create logging directory for interns-service
+    file: path=/var/log/interns-service state=directory owner=interns group=aquatic
 
   - name: Install pytz for interns diamond collector
     pip: name=pytz
