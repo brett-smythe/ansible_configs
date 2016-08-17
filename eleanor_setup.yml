@@ -19,6 +19,9 @@
   - name: Create user eleanor
     user: name=eleanor shell=/bin/bash password=$6$Noqb1/cqYh$GslCHsq9IpFZUGMXI4isCTySVGtUXdVJrU2oIQlfznSm33eykkpiwbGCaGHFTFZxR6prrx.gf7uflWcbnxb/v1 group=aquatic generate_ssh_key=yes
 
+  - name: Create logging directory for eleanor service
+    file: path=/var/log/eleanor state=directory owner=eleanor group=aquatic
+
   - name: Copy supervisor conf for service 
     copy: src=service_management/eleanor.conf dest=/etc/supervisor/conf.d/eleanor.conf owner=root group=root mode=644
 
@@ -27,4 +30,3 @@
 
   - name: Reload new supervisor config
     command: supervisorctl reread
-
