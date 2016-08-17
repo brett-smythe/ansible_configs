@@ -1,11 +1,4 @@
-- name: Setup interns-service service requirements
-  hosts: rabbitmq-host
-  remote_user: root
-  tasks:
-  - name: Install rabbitmq
-    apt: name=rabbitmq-server state=latest update_cache=yes
-
-- hosts: interns-service
+- hosts: interns-twitter
   remote_user: root
   roles:
   - virtualenv
@@ -17,16 +10,13 @@
     user: name=interns shell=/bin/bash password=$6$X65HxwxncnLq2u$7RU2FxqQFVPcmTT0ubNvNZTewEUORB1xT4lnmx/7dLn7rG54N6QmZdP5.mJKSain6L1xwCzoc.XyP79uGcxo.1 group=aquatic generate_ssh_key=yes
 
   - name: Copy supervisor conf for interns-service
-    copy: src=service_management/interns.conf dest=/etc/supervisor/conf.d/interns.conf owner=root group=root mode=644
+    copy: src=service_management/interns-twitter.conf dest=/etc/supervisor/conf.d/interns-twitter.conf owner=root group=root mode=644
 
   - name: Allow interns to manage its service
     lineinfile: dest=/etc/sudoers regexp="^%interns\s+ALL=\s+NOPASSWD:\s+/usr/bin/supervisorctl$" line="%interns ALL= NOPASSWD{{ ':' }} /usr/bin/supervisorctl"
 
   - name: Create logging directory for interns-service
-    file: path=/var/log/interns-service state=directory owner=interns group=aquatic
-
-  - name: Create logging directory for interns-scheduler
-    file: path=/var/log/interns-scheduler state=directory owner=interns group=aquatic
+    file: path=/var/log/interns-twitter state=directory owner=interns group=aquatic
 
   - name: Install pytz for interns diamond collector
     pip: name=pytz
@@ -39,46 +29,3 @@
 
   - name: Reload new supervisor config
     command: supervisorctl reread
-
-- name: Setup interns-scheduler service requirements                                 
-  hosts: rabbitmq-host                                                             
-  remote_user: root                                                                
-  tasks:                                                                           
-  - name: Install rabbitmq                                                         
-    apt: name=rabbitmq-server state=latest update_cache=yes 
-
-- hosts: interns-scheduler
-  remote_user: root
-  roles:
-  - virtualenv
-  - supervisor
-  - aquatic_group
-  - diamond
-  tasks:
-  - name: Create interns user
-    user: name=interns shell=/bin/bash password=$6$X65HxwxncnLq2u$7RU2FxqQFVPcmTT0ubNvNZTewEUORB1xT4lnmx/7dLn7rG54N6QmZdP5.mJKSain6L1xwCzoc.XyP79uGcxo.1 group=aquatic generate_ssh_key=yes
-
-  - name: Copy supervisor conf for interns-scheduler service
-    copy: src=service_management/interns-scheduler.conf dest=/etc/supervisor/conf.d/interns-scheduler.conf owner=root group=root mode=644
-
-  - name: Allow interns to manage its service
-    lineinfile: dest=/etc/sudoers regexp="^%interns\s+ALL=\s+NOPASSWD:\s+/usr/bin/supervisorctl$" line="%interns ALL= NOPASSWD{{ ':' }} /usr/bin/supervisorctl"
-
-  - name: Create logging directory for interns-scheduler
-    file: path=/var/log/interns-scheduler state=directory owner=interns group=aquatic
-
-  - name: Create logging directory for interns-service
-    file: path=/var/log/interns-service state=directory owner=interns group=aquatic
-
-  - name: Install pytz for interns diamond collector
-    pip: name=pytz
-
-  - name: Copy diamond interns twitter limits conf
-    copy: src=diamond/configs/InternsTwitterLimitsCollector.conf dest=/etc/diamond/collectors/InternsTwitterLimitsCollector.conf owner=oseary group=aquatic mode=644
-
-  - name: Copy diamond InternsTwitterLimits collector
-    copy: src=diamond/collectors/InternsTwitterLimitsCollector.py dest=/usr/share/diamond/collectors/InternsTwitterLimitsCollector.py owner=oseary group=aquatic mode=644
-
-  - name: Reload new supervisor config
-    command: supervisorctl reread
-
