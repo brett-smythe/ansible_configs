@@ -1,8 +1,8 @@
-- name: Restart the interns service
-  hosts: interns-service
+- name: Restart the interns-twitter service
+  hosts: interns-twitter
   remote_user: interns
   tasks:
     - name: Stop interns
-      supervisorctl: name=interns state=stopped
+      supervisorctl: name=interns-twitter state=stopped
     - name: Restart interns
-      supervisorctl: name=interns state=started
+      supervisorctl: name=interns-twitter state=started
