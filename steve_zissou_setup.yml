@@ -21,7 +21,12 @@
   - name: Reload new supervisor config
     command: supervisorctl reread
 
-  - name: Create templates directory for eleanor
+  - name: Create templates directory for steve-zissou
     file: path=/opt/steve-zissou/templates/ state=directory owner=steve-zissou group=aquatic
   - name: Move templates for steve-zissou into directory
-    copy: src=zissou_templates/ dest=/opt/steve-zissou/templates/ owner=steve-zissou group=aquatic 
+    copy: src=zissou_templates/ dest=/opt/steve-zissou/templates/ owner=steve-zissou group=aquatic
+
+  - name: Create static directory for steve-zissou
+    file: path=/opt/steve-zissou/static/ state=directory owner=steve-zissou group=aquatic
+  - name: Move static files for steve-zissou into directory
+    copy: src=zissou_static/ dest=/opt/steve-zissou/static/ owner=steve-zissou group=aquatic 
