@@ -1,0 +1,22 @@
+- name: Setup eleanor service requirements
+  hosts: steve-zissou-service
+  remote_user: root
+  roles:
+  - virtualenv
+  - supervisor
+  - aquatic_group
+  tasks:
+  - name: Create user steve-zissou
+    user: name=steve-zissou shell=/bin/bash password=$6$Noqb1/cqYh$GslCHsq9IpFZUGMXI4isCTySVGtUXdVJrU2oIQlfznSm33eykkpiwbGCaGHFTFZxR6prrx.gf7uflWcbnxb/v1 group=aquatic generate_ssh_key=yes
+
+  - name: Create logging directory for steve-zissou service
+    file: path=/var/log/steve-zissou state=directory owner=steve-zissou group=aquatic
+
+  - name: Copy supervisor conf for service
+    copy: src=service_management/steve-zissou.conf dest=/etc/supervisor/conf.d/steve-zissou.conf owner=root group=root mode=644
+
+  - name: Allow steve-zissou to manage it's service
+    lineinfile: dest=/etc/sudoers regexp="^%steve-zissou\s+ALL=\s+NOPASSWD:\s+/usr/bin/supervisorctl$" line="%steve-zissou ALL= NOPASSWD{{ ':' }} /usr/bin/supervisorctl"
+
+  - name: Reload new supervisor config
+    command: supervisorctl reread

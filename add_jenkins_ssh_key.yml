@@ -97,3 +97,12 @@
       authorized_key:
         user: oseary
         key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}"
+
+- name: Add Jenkins ssh keys where needed for deploy purposes
+  hosts: steve-zissou-service
+  remote_user: root
+  tasks:
+    - name: Add jenkins ssh key to steve-zissou keys
+      authorized_key:
+        user: steve-zissou
+        key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}"
