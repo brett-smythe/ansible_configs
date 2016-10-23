@@ -36,4 +36,4 @@
     copy: src=steve_zissou_static/fonts/ dest=/opt/steve-zissou/static/fonts/ owner=steve-zissou group=aquatic
 
   - name: Move templates for steve-zissou
-    copy: src=steve_zissou/steve_zissou/templates/ dest=/opt/steve-zissou/templates/ owner=steve-zissou group=aquatic
+  copy: src=steve_zissou/steve_zissou/templates/ dest=/usr/share/python/steve-zissou/lib/python2.7/site-packages/steve_zissou/ owner=steve-zissou group=aquatic
