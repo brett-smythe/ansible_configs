@@ -27,13 +27,13 @@
     command: apt-get --allow-unauthenticated install steve-zissou
 
   - name: Move built javascript for steve-zissou
-    copy: src=steve_zissou_static/build/js/ dest=/opt/steve-zissou/js/ owner=steve-zissou group=aquatic
+    copy: src=steve_zissou_static/build/js/ dest=/opt/steve-zissou/static/js/ owner=steve-zissou group=aquatic
 
   - name: Move css for steve-zissou
-    copy: src=steve_zissou_static/css/ dest=/opt/steve-zissou/css/ owner=steve-zissou group=aquatic
+    copy: src=steve_zissou_static/css/ dest=/opt/steve-zissou/static/css/ owner=steve-zissou group=aquatic
 
   - name: Move fonts for steve-zissou
-    copy: src=steve_zissou_static/fonts/ dest=/opt/steve-zissou/fonts/ owner=steve-zissou group=aquatic
+    copy: src=steve_zissou_static/fonts/ dest=/opt/steve-zissou/static/fonts/ owner=steve-zissou group=aquatic
 
   - name: Move templates for steve-zissou
     copy: src=steve_zissou/steve_zissou/templates/ dest=/opt/steve-zissou/templates/ owner=steve-zissou group=aquatic
