@@ -4,5 +4,24 @@
   tasks:
   - name: Updating apt
     apt: update_cache=yes
+
   - name: Updating steve-zissou to the latest version
     command: apt-get --allow-unauthenticated install steve-zissou
+
+  - name: Install steve_zissou_static dependencies
+    command: npm install chdir=steve_zissou_static/
+
+  - name: Build steve_zissou_static assets
+    command: ./build_prod_assets.sh chdir=steve_zissou_static/
+
+  - name: Move built javascript for steve-zissou
+  copy: src=steve_zissou_static/build/js/ dest=/opt/steve-zissou/js/ owner=steve-zissou group=aquatic
+
+  - name: Move css for steve-zissou
+    copy: src=steve_zissou_static/css/ dest=/opt/steve-zissou/css/ owner=steve-zissou group=aquatic
+
+  - name: Move fonts for steve-zissou
+    copy: src=steve_zissou_static/fonts/ dest=/opt/steve-zissou/fonts/ owner=steve-zissou group=aquatic
+
+  - name: Move templates for steve-zissou
+    copy: src=steve_zissou/steve_zissou/templates/ dest=/opt/steve-zissou/templates/ owner=steve-zissou group=aquatic
