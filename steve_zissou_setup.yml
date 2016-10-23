@@ -1,4 +1,4 @@
-- name: Setup eleanor service requirements
+- name: Setup steve-zissou service requirements
   hosts: steve-zissou-service
   remote_user: root
   roles:

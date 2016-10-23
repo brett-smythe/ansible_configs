@@ -1,4 +1,4 @@
-- name: Update to latest version of eleanor
+- name: Update to latest version of steve-zissou
   hosts: steve-zissou-service
   remote_user: jenkins
   tasks:
@@ -16,7 +16,7 @@
     args:
       chdir: "{{ playbook_dir }}/steve_zissou_static/"
 
-- name: Update to latest version of eleanor
+- name: Update to latest version of steve-zissou
   hosts: steve-zissou-service
   remote_user: root
   tasks:
