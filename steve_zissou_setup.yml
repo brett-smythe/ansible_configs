@@ -6,6 +6,9 @@
   - supervisor
   - aquatic_group
   tasks:
+  - name: Include vars
+    include_vars: 'aquatic_vars.yml'
+
   - name: Create user steve-zissou
     user: name=steve-zissou shell=/bin/bash password=$6$Noqb1/cqYh$GslCHsq9IpFZUGMXI4isCTySVGtUXdVJrU2oIQlfznSm33eykkpiwbGCaGHFTFZxR6prrx.gf7uflWcbnxb/v1 group=aquatic generate_ssh_key=yes
 

@@ -1,12 +1,10 @@
-- name: Test vars
-  hosts: web-db
-  remote_user: brett
+- hosts: web-db
+  remote_user: root
+  roles:
+  - test_vars
   tasks:
-    - name: Inlucde vars
-      include_vars: 'aquatic_vars.yml'
+  - name: Inlucde vars
+    include_vars: 'aquatic_vars.yml'
+  - name: Echo
+    command: echo 'a'
 
-    - name: Test vars
-      shell: echo '{{ test_var }}' > /tmp/ansible_vars_test
-
-    - name: Test template
-      template: src=template_test.cfg.j2 dest=/tmp/template_test.cfg

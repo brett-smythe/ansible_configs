@@ -63,7 +63,7 @@ days = 7
 
 # Graphite server host
 #host = 127.0.0.1
-host = {{ hostvars[groups['graphite-host'][0]]['ansible_eth0']['ipv4']['address'] }}
+host = {{ hostvars[groups['graphite-host'][0]]['inventory_hostname'] }}
 
 # Port to send metrics to
 port = 2003
@@ -79,7 +79,7 @@ batch = 1
 
 # Graphite server host
 #host = 127.0.0.1
-host = {{ hostvars[groups['graphite-host'][0]]['ansible_eth0']['ipv4']['address'] }}
+host = {{ hostvars[groups['graphite-host'][0]]['inventory_hostname'] }}
 
 # Port to send metrics to
 port = 2004

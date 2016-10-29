@@ -1,0 +1,31 @@
+- name: Setup auth for eleanor
+  hosts: eleanor-service
+  remote_user: root
+  tasks:
+  - name: Include vars
+    include_vars: 'aquatic_vars.yml'
+
+  - name: Create directory for eleanor auth config
+    file: path=/etc/opt/eleanor state=directory owner=eleanor group=aquatic
+
+  - name: Copying eleanor auth config
+    template: src=aquatic_auth/aquatic_auth.cfg.j2 dest=/etc/opt/eleanor/eleanor_auth.cfg owner=eleanor group=aquatic mode=0740
+
+- name: Setup auth for interns
+  hosts: interns-twitter
+  remote_user: root
+  tasks:
+  - name: Include vars
+    include_vars: 'aquatic_vars.yml'
+
+  - name: Create directory for interns auth config
+    file: path=/etc/opt/interns state=directory owner=interns group=aquatic
+
+  - name: Copying interns auth config
+    template: src=aquatic_auth/aquatic_auth.cfg.j2 dest=/etc/opt/interns/interns_auth.cfg owner=interns group=aquatic mode=0740
+
+  - name: Create directory for interns-tasks auth config
+    file: path=/etc/opt/interns_tasks state=directory owner=nobody group=aquatic
+
+  - name: Copying interns-tasks auth config
+    template: src=aquatic_auth/aquatic_auth.cfg.j2 dest=/etc/opt/interns_tasks/interns_tasks_auth.cfg owner=nobody group=aquatic mode=0740

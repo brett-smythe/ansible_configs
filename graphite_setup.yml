@@ -3,6 +3,9 @@
   roles:
   - postgresql
   tasks:
+    - name: Include vars
+      include_vars: 'aquatic_vars.yml'
+
     - name: Install graphite-web
       apt: name=graphite-web state=latest update_cache=yes
 
@@ -11,11 +14,13 @@
 
     - name: Create graphite postgres user
       postgresql_user: name=graphite password=graphing
-      remote_user: postgres
+      sudo: yes
+      sudo_user: postgres
 
     - name: Create graphite database
       postgresql_db: name=graphite owner=graphite
-      remote_user: postgres
+      sudo: yes
+      sudo_user: postgres
 
     - name: Setup graphite local settings
       template: src=graphite/local_settings.py.j2 dest=/etc/graphite/local_settings.py
