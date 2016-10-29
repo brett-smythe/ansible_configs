@@ -16,7 +16,7 @@
   file: path=/var/log/diamond/ state=directory owner=oseary group=aquatic
 
 - name: Copy diamond.conf
-  copy: src=../../../diamond/configs/diamond.conf dest=/etc/diamond/diamond.conf owner=oseary group=aquatic mode=644
+  template: src=../../../diamond/configs/diamond.conf dest=/etc/diamond/diamond.conf owner=oseary group=aquatic mode=644
 
 - name: Copy diamond cpu conf
   copy: src=../../../diamond/configs/CPUCollector.conf dest=/etc/diamond/collectors/CPUCollector.conf owner=oseary group=aquatic mode=644
