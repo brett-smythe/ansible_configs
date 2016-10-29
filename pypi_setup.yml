@@ -17,7 +17,7 @@
       command: virtualenv /opt/pypi/venv
 
     - name: Install pypi in virtualenv
-      pip: name=pypi virtualenv=/opt/pypi/venv
+      pip: name=pypiserver virtualenv=/opt/pypi/venv
 
     - name: Copy supervisor conf for pypi
       copy: src=service_management/pypiserver.conf dest=/etc/supervisor/conf.d/pypiserver.conf owner=root group=root mode=644
