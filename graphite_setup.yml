@@ -1,0 +1,45 @@
+- hosts: graphite-host
+  remote_user: root
+  roles:
+  - postgresql
+  tasks:
+    - name: Install graphite-web
+      apt: name=graphite-web state=latest update_cache=yes
+
+    - name: Install graphite-carbon
+      apt: name=graphite-carbon state=latest
+
+    - name: Create graphite postgres user
+      postgresql_user: name=graphite password=graphing
+      remote_user: postgres
+
+    - name: Create graphite database
+      postgresql_db: name=graphite owner=graphite
+      remote_user: postgres
+
+    - name: Setup graphite local settings
+      template: src=graphite/local_settings.py.j2 dest=/etc/graphite/local_settings.py
+
+    - name: Copy graphite-carbon
+      copy: src=graphite/graphite-carbon dest=/etc/default/graphite-carbon
+
+    - name: Copy carbon conf
+      copy: src=graphite/carbon.conf dest=/etc/carbon/carbon.conf
+
+    - name: Copy storage schemas
+      copy: src=graphite/storage-schemas.conf dest=/etc/carbon/storage-schemas.conf
+
+    - name: Copy storage aggregation
+      copy: src=graphite/storage-aggregation.conf dest=/etc/carbon/storage-aggregation.conf
+
+    - name: Install apache
+      apt: name=apache2 state=latest
+
+    - name: Install libapache2-mod-wsgi
+      apt: name=libapache2-mod-wsgi state=latest
+
+    - name: Install python-pip
+      apt: name=python-pip state=latest
+
+    - name: Install diamond system wide
+      shell: pip install diamond

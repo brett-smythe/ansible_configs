@@ -1,0 +1,2 @@
+[TestVar]
+test_val = {{ hostvars[groups['aptly'][0]]['ansible_eth0']['ipv4']['address'] }}

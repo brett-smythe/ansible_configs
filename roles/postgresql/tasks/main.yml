@@ -4,5 +4,8 @@
 - name: Install libpq-dev to manage postgresql
   apt: name=libpq-dev state=latest
 
+- name: Install python-dev
+  apt: name=python-dev state=latest
+
 - name: Install python-psycopg2 to manage postgresql
   apt: name=python-psycopg2 state=latest

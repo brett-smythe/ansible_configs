@@ -1,0 +1,22 @@
+- name: Setup pypi requirements
+  hosts: pypi
+  remote_user: root
+  roles:
+  - aquatic_group
+  - virtualenv
+  - supervisor
+  tasks:
+    - name: Create pypi working directory
+      file: path=/opt/pypi/venv owner=pypi group=aquatic
+
+    - name: Create pypi virtualenv
+      command: virtualenv /opt/pypi/venv
+
+    - name: Install pypi in virtualenv
+      pip: name=pypi virtualenv=/opt/pypi/venv
+
+    - name: Copy supervisor conf for pypi
+      copy: src=service_management/pypiserver.conf dest=/etc/supervisor/conf.d/pypiserver.conf owner=root group=root mode=644
+
+    - name: Reload new supervisor config
+      command: supervisorctl reread

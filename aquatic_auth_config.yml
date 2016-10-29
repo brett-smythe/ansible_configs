@@ -6,7 +6,7 @@
     file: path=/etc/opt/eleanor state=directory owner=eleanor group=aquatic
 
   - name: Copying eleanor auth config
-    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/eleanor/eleanor_auth.cfg owner=eleanor group=aquatic mode=0740
+    template: src=aquatic_auth/aquatic_auth.cfg.j2 dest=/etc/opt/eleanor/eleanor_auth.cfg owner=eleanor group=aquatic mode=0740
 
 - name: Setup auth for interns
   hosts: interns-service
@@ -16,13 +16,13 @@
     file: path=/etc/opt/interns state=directory owner=interns group=aquatic
 
   - name: Copying interns auth config
-    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/interns/interns_auth.cfg owner=interns group=aquatic mode=0740
+    template: src=aquatic_auth/aquatic_auth.cfg.j2 dest=/etc/opt/interns/interns_auth.cfg owner=interns group=aquatic mode=0740
 
   - name: Create directory for interns-tasks auth config
     file: path=/etc/opt/interns_tasks state=directory owner=nobody group=aquatic
 
   - name: Copying interns-tasks auth config
-    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/interns_tasks/interns_tasks_auth.cfg owner=nobody group=aquatic mode=0740
+    template: src=aquatic_auth/aquatic_auth.cfg.j2 dest=/etc/opt/interns_tasks/interns_tasks_auth.cfg owner=nobody group=aquatic mode=0740
 
 - name: Setup auth for interns
   hosts: interns-scheduler
@@ -32,7 +32,7 @@
     file: path=/etc/opt/interns state=directory owner=interns group=aquatic
 
   - name: Copying interns auth config
-    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/interns/interns_auth.cfg owner=interns group=aquatic mode=0740
+    template: src=aquatic_auth/aquatic_auth.cfg.j2 dest=/etc/opt/interns/interns_auth.cfg owner=interns group=aquatic mode=0740
 
 - name: Setup auth for oseary
   hosts: oseary-service
@@ -42,11 +42,11 @@
     file: path=/etc/opt/oseary state=directory owner=oseary group=aquatic
 
   - name: Copying oseary auth config
-    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/oseary/oseary_auth.cfg owner=oseary group=aquatic mode=0740
+    template: src=aquatic_auth/aquatic_auth.cfg.j2 dest=/etc/opt/oseary/oseary_auth.cfg owner=oseary group=aquatic mode=0740
 
   - name: Create directory for interns-tasks auth config
     file: path=/etc/opt/interns_tasks state=directory owner=nobody group=aquatic
 
   - name: Copying interns-tasks auth config
-    copy: src=aquatic_auth/aquatic_auth.cfg dest=/etc/opt/interns_tasks/interns_tasks_auth.cfg owner=nobody group=aquatic mode=0740
+    template: src=aquatic_auth/aquatic_auth.cfg.j2 dest=/etc/opt/interns_tasks/interns_tasks_auth.cfg owner=nobody group=aquatic mode=0740
 
