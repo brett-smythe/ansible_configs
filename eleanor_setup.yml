@@ -2,7 +2,10 @@
   hosts: api-db
   remote_user: root
   roles:
+  - supervisor
+  - virtualenv
   - postgresql
+  - aquatic_group
   tasks:
   - name: Add eleanor user to Postgres
   - lineinfile: dest=/etc/postgresql/9.4/main/pg_hba.conf regexp="^hosts+alls+alls+{{ ip_routing_prefix }}/24s+md5$" insertafter="^#sIPv4slocal.+" line="host     all             all            {{ ip_routing_prefix }}/24          md5"

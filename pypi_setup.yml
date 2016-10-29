@@ -2,9 +2,9 @@
   hosts: pypi
   remote_user: root
   roles:
-  - aquatic_group
   - virtualenv
   - supervisor
+  - aquatic_group
   tasks:
     - name: Create pypi working directory
       file: path=/opt/pypi/venv owner=pypi group=aquatic
