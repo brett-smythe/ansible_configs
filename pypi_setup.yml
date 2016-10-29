@@ -6,11 +6,12 @@
   - supervisor
   - aquatic_group
   tasks:
+    - name: Create pypi user 
+      user: name=pypi shell=/bin/bash password=$6$DBtSvjmleXIAU2$aRN/hE18IMlv2/q4xtwzmulcwa9aXeEqYsBpXSTvOHRGOKfAO9IxzZeZWtcUAPH4Dg9uolExCqzL9azEAJaOF. group=aquatic generate_ssh_key=yes
+
     - name: Create pypi working directory
       file: path=/opt/pypi/venv owner=pypi group=aquatic state=directory
 
-    - name: Create pypi user 
-      user: name=pypi shell=/bin/bash password=$6$DBtSvjmleXIAU2$aRN/hE18IMlv2/q4xtwzmulcwa9aXeEqYsBpXSTvOHRGOKfAO9IxzZeZWtcUAPH4Dg9uolExCqzL9azEAJaOF. group=aquatic generate_ssh_key=yes
 
     - name: Create pypi virtualenv
       command: virtualenv /opt/pypi/venv
