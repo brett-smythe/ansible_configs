@@ -9,3 +9,8 @@
   roles:
   - virtualenv
   - jenkins
+  tasks:
+    - name: Add jenkins parent ssh key to child
+      authorized_key:
+        user: jenkins
+        key: "{{ lookup('file', 'var/lib/jenkins/.ssh/id_rsa.pub') }}"

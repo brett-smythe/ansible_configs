@@ -3,3 +3,6 @@
 
 - name: Install dh-virtualenv
   apt: name=dh-virtualenv state=latest
+
+- name: Install git
+  apt: name=git state=latest
