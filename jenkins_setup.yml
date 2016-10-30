@@ -1,0 +1,11 @@
+- hosts: jenkins
+  remote_user: root
+  roles:
+  - virtualenv
+  - jenkins
+
+- hosts: jenkins-worker
+  remote_user: root
+  roles:
+  - virtualenv
+  - jenkins

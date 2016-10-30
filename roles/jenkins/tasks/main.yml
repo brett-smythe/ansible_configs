@@ -1,0 +1,5 @@
+- name: Install debhelper
+  apt: name=debhelper state=latest update_cache=yes
+
+- name: Install dh-virtualenv
+  apt: name=dh-virtualenv state=latest

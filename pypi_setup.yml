@@ -12,7 +12,6 @@
     - name: Create pypi working directory
       file: path=/opt/pypi/venv owner=pypi group=aquatic state=directory
 
-
     - name: Create pypi virtualenv
       command: virtualenv /opt/pypi/venv
 

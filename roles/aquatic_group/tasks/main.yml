@@ -1,3 +1,6 @@
+- name: Include vars
+  include_vars: '../../../aquatic_vars.yml'
+
 - name: Add aquatic user group for services to execute on
   group: name=aquatic
 
@@ -8,4 +11,4 @@
   copy: src=../../../service_management/supervisor.conf dest=/etc/supervisor/supervisord.conf owner=root group=root mode=644
 
 - name: Add sources for the aquatic services
-  copy: src=../../../aquatic_sources/aptly.list dest=/etc/apt/sources.list.d/aptly.list owner=root group=root mode=644
+  template: src=../../../aquatic_sources/aptly.list.j2 dest=/etc/apt/sources.list.d/aptly.list owner=root group=root mode=644
