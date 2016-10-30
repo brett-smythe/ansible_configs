@@ -43,6 +43,18 @@
     - name: Install libapache2-mod-wsgi
       apt: name=libapache2-mod-wsgi state=latest
 
+    - name: Disable default apache site
+      command: a2dissite 000-default
+
+    - name: Copy apache graphite config file
+      copy: src=graphite/apache2-graphite.conf dest=/etc/apache2/sites-available/apache2-graphite.conf
+
+    - name: Enable apache graphite configs
+      command: a2ensite apache2-graphite
+
+    - name: Restart apache
+      service: name=apache2 state=restarted
+
     - name: Install python-pip
       apt: name=python-pip state=latest
 
