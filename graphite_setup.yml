@@ -52,6 +52,9 @@
     - name: Enable apache graphite configs
       command: a2ensite apache2-graphite
 
+    - name: Copy apache ports.conf
+      copy: src=graphite/ports.conf dest=/etc/apache2/ports.conf
+
     - name: Restart apache
       service: name=apache2 state=restarted
 
