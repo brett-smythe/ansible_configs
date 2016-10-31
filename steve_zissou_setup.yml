@@ -21,11 +21,14 @@
   - name: Allow steve-zissou to manage it's service
     lineinfile: dest=/etc/sudoers regexp="^%steve-zissou\s+ALL=\s+NOPASSWD:\s+/usr/bin/supervisorctl$" line="%steve-zissou ALL= NOPASSWD{{ ':' }} /usr/bin/supervisorctl"
 
-  - name: Reload new supervisor config
-    command: supervisorctl reread
-
   - name: Create templates directory for steve-zissou
     file: path=/opt/steve-zissou/templates/ state=directory owner=steve-zissou group=aquatic
 
   - name: Create static directory for steve-zissou
     file: path=/opt/steve-zissou/static/ state=directory owner=steve-zissou group=aquatic
+
+  - name: Reread new supervisor config
+    command: supervisorctl reread
+
+  - name: Reload supervisor
+    command: supervisorctl reload

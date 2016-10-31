@@ -27,5 +27,8 @@
   - name: Copy diamond InternsTwitterTimeline collector
     copy: src=diamond/collectors/InternsTwitterTimelineCollector.py dest=/usr/share/diamond/collectors/InternsTwitterTimelineCollector.py owner=oseary group=aquatic mode=644
 
-  - name: Reload new supervisor config
+  - name: Reread new supervisor config
     command: supervisorctl reread
+
+  - name: Reload supervisor
+    coammdn: supervisorctl reload

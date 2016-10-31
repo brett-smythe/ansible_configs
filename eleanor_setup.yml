@@ -31,5 +31,8 @@
   - name: Allow eleanor to manage it's service
     lineinfile: dest=/etc/sudoers regexp="^%eleanor\s+ALL=\s+NOPASSWD:\s+/usr/bin/supervisorctl$" line="%eleanor ALL= NOPASSWD{{ ':' }} /usr/bin/supervisorctl"
 
-  - name: Reload new supervisor config
+  - name: Reread new supervisor config
     command: supervisorctl reread
+
+  - name: Reload supervisor
+    command: supervisorctl reload
