@@ -7,6 +7,27 @@
   - name: Add pypi user to pypidist group
     user: name=pypi groups=pypidist append=yes
 
+  - name: Create armhf build directory
+    file: path=/var/lib/jenkins/armhf_build state=directory owner=jenkins group=jenkins
+
+  - name: Create eleanor armhf build directory
+    file: path=/var/lib/jenkins/armhf_build/eleanor state=directory owner=jenkins group=jenkins
+
+  - name: Copy eleanor armhf build script
+    copy: src=jenkins/eleanor_armhf_repo.sh dest=/var/lib/jenkins/armhf_build/eleanor/eleanor_armhf_repo.sh owner=jenkins group=jenkins
+
+  - name: Create interns armhf build directory
+    file: path=/var/lib/jenkins/armhf_build/interns state=directory owner=jenkins group=jenkins
+
+  - name: Copy interns armhf build script
+    copy: src=jenkins/interns_armhf_repo.sh dest=/var/lib/jenkins/armhf_build/interns/interns_armhf_repo.sh owner=jenkins group=jenkins
+
+  - name: Create steve-zissou armhf build directory
+    file: path=/var/lib/jenkins/armhf_build/steve-zissou state=directory owner=jenkins group=jenkins
+
+  - name: Copy steve-zissou armhf build script
+    copy: src=jenkins/steve-zissou_armhf_repo.sh dest=/var/lib/jenkins/armhf_build/steve-zissou/steve-zissou_armhf_repo.sh owner=jenkins group=jenkins
+
 - hosts: jenkins-worker
   remote_user: root
   roles:
