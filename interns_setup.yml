@@ -31,4 +31,4 @@
     command: supervisorctl reread
 
   - name: Reload supervisor
-    coammdn: supervisorctl reload
+    command: supervisorctl reload
