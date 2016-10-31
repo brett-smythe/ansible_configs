@@ -1,8 +1,13 @@
 - name: Restart the eleanor service
   hosts: steve-zissou-service
-  remote_user: steve-zissou
+  remote_user: root
   tasks:
     - name: Stop steve-zissou
       supervisorctl: name=steve-zissou state=stopped
+      sudo: yes
+      sudo_user: steve-zissou
+
     - name: Restart steve-zissou
       supervisorctl: name=steve-zissou state=started
+      sudo: yes
+      sudo_user: steve-zissoue

@@ -1,8 +1,13 @@
 - name: Restart the interns-twitter service
   hosts: interns-twitter
-  remote_user: interns
+  remote_user: root
   tasks:
     - name: Stop interns
       supervisorctl: name=interns-twitter state=stopped
+      sudo: yes
+      sudo_user: interns
+
     - name: Restart interns
       supervisorctl: name=interns-twitter state=started
+      sudo: yes
+      sudo_user: interns

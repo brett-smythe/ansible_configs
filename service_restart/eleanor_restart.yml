@@ -1,8 +1,13 @@
 - name: Restart the eleanor service
   hosts: eleanor-service
-  remote_user: eleanor
+  remote_user: root
   tasks:
     - name: Stop eleanor
       supervisorctl: name=eleanor state=stopped
+      sudo: yes
+      sudo_user: eleanor
+
     - name: Restart eleanor
       supervisorctl: name=eleanor state=started
+      sudo: yes
+      sudo_user: eleanor
