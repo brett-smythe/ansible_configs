@@ -2,14 +2,15 @@
   hosts: aptly
   remote_user: root
   tasks:
-  - name: Install nginx-full
-    apt: update_cache=yes name=nginx-full state=present
-
-  - name: Update apt and install nginx
-    apt: name=nginx state=present
 
   - name: Install aptly
     command: apt-get --allow-unauthenticated install aptly
+
+  - name: Install nginx-full
+    apt: name=nginx-full state=present
+
+  - name: Update apt and install nginx
+    apt: name=nginx state=present
 
   - name: Copy nginx configs to sites-available
     copy: src=nginx_configs/aptly dest=/etc/nginx/sites-available/aptly

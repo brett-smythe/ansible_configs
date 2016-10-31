@@ -3,6 +3,9 @@
   roles:
   - virtualenv
   - jenkins
+  tasks:
+  - name: Add pypi user to pypidist group
+    user: name=pypi groups=pypidist append=yes
 
 - hosts: jenkins-worker
   remote_user: root
@@ -13,4 +16,13 @@
     - name: Add jenkins parent ssh key to child
       authorized_key:
         user: jenkins
-        key: "{{ lookup('file', 'var/lib/jenkins/.ssh/id_rsa.pub') }}"
+        key: "{{ lookup('file', '/var/lib/jenkins/.ssh/id_rsa.pub') }}"
+
+    - name: Create jenkins child build directory
+      file: path=/home/jenkins/builds state=directory owner=jenkins group=jenkins
+
+    - name: Install openjdk-7-jdk on jenkins child node
+      apt: name=openjdk-7-jdk state=latest
+
+    - name: Install openjdk-7-jre on jenkins child node
+      apt: name=openjdk-7-jre state=latest

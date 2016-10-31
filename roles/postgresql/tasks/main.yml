@@ -1,5 +1,5 @@
 - name: Install postgresql
-  apt: name=postgresql state=latest update_cache=yes
+  apt: name=postgresql state=latest
 
 - name: Install libpq-dev to manage postgresql
   apt: name=libpq-dev state=latest

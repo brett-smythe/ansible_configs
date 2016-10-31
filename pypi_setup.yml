@@ -10,10 +10,16 @@
       user: name=pypi shell=/bin/bash password=$6$DBtSvjmleXIAU2$aRN/hE18IMlv2/q4xtwzmulcwa9aXeEqYsBpXSTvOHRGOKfAO9IxzZeZWtcUAPH4Dg9uolExCqzL9azEAJaOF. group=aquatic generate_ssh_key=yes
 
     - name: Create pypi working directory
-      file: path=/opt/pypi/venv owner=pypi group=aquatic state=directory
+      file: path=/opt/pypi/venv owner=pypi group=pypidist state=directory
+
+    - name: Create pypi packages directory
+      file: path=/opt/pypi/packages owner=pypi group=pypidist state=directory mode=774
 
     - name: Create pypi virtualenv
       command: virtualenv /opt/pypi/venv
+
+    - name: Create pypi packages directory
+      file: path=/opt/pypi/packages owner=pypi group=pypidist state=directory
 
     - name: Install pypi in virtualenv
       pip: name=pypiserver virtualenv=/opt/pypi/venv

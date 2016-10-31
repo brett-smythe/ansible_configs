@@ -1,2 +1,2 @@
 - name: Install supervisor
-  apt: name=supervisor state=latest update_cache=yes
+  apt: name=supervisor state=latest

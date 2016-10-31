@@ -1,5 +1,5 @@
 - name: Install python-pip
-  apt: name=python-pip state=latest update_cache=yes
+  apt: name=python-pip state=latest
 
 - name: Install virtualenv
   shell: pip install virtualenv

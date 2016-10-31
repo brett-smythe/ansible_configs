@@ -7,7 +7,7 @@
       include_vars: 'aquatic_vars.yml'
 
     - name: Install graphite-web
-      apt: name=graphite-web state=latest update_cache=yes
+      apt: name=graphite-web state=latest
 
     - name: Install graphite-carbon
       apt: name=graphite-carbon state=latest

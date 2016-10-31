@@ -1,8 +1,14 @@
 - name: Install debhelper
-  apt: name=debhelper state=latest update_cache=yes
+  apt: name=debhelper state=latest
 
 - name: Install dh-virtualenv
   apt: name=dh-virtualenv state=latest
 
 - name: Install git
   apt: name=git state=latest
+
+- name: Create pypidist group
+  group: name=pypidist state=present
+
+- name: Add user jenkins to pypidist group
+  user: name=jenkins groups=pypidist append=yes
