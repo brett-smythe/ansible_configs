@@ -1,1 +1,5 @@
+{% if hostvars[groups['aptly'][0]]['ansible_eth0'] is defined %}
 deb http://{{ hostvars[groups['aptly'][0]]['ansible_eth0']['ipv4']['address'] }}:8082/ jessie main
+{% else %}
+deb http://{{ hostvars[groups['aptly'][0]]['inventory_hostname'] }}:8082/ jessie main
+{% endif %}
