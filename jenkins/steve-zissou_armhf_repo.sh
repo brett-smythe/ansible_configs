@@ -6,6 +6,6 @@ fi
 debfile=$(find /var/lib/jenkins/armhf_build/steve-zissou/ -maxdepth 1 -name *\.deb*)
 (aptly repo add internal-jessie $debfile || : )
 (aptly snapshot create $debfile-stable from repo internal-jessie || : )
-(aptly publish drop jessie,wheezy || : )
+(aptly publish drop jessie || : )
 aptly publish snapshot -architectures=amd64,armhf,i386 $debfile-stable
 rm $debfile
