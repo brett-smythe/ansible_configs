@@ -3,16 +3,16 @@
   remote_user: jenkins
   tasks:
   - name: Install steve_zissou_static dependencies
-    shell: npm install
+    shell: source /var/lib/jenkins/.bashrc && npm install
     environment:
-      PATH: "{{ ansible_env.HOME }}/.nvm/versions/node/v6.9.1/bin"
+      HOME: "/var/lib/jenkins"
     args:
       chdir: "{{ playbook_dir }}/steve_zissou_static/"
 
   - name: Build steve_zissou static assets
-    shell: ./build_prod_assets.sh
+    shell: source /var/lib/jenkins/.bashrc && ./build_prod_assets.sh
     environment:
-      PATH: "{{ ansible_env.HOME }}/.nvm/versions/node/v6.9.1/bin"
+      HOME: "/var/lib/jenkins"
     args:
       chdir: "{{ playbook_dir }}/steve_zissou_static/"
 

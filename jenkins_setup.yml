@@ -3,6 +3,7 @@
   roles:
   - virtualenv
   - jenkins
+  - node
   tasks:
   - name: Add pypi user to pypidist group
     user: name=pypi groups=pypidist append=yes

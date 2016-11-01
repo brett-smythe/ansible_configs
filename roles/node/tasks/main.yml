@@ -1,0 +1,40 @@
+- name: Install node prereqs
+  apt: name=build-essential state=latest
+
+- name: Install node prereqs
+  apt: name=libssl-dev state=latest
+
+- name: Install curl
+  apt: name=curl state=latest
+
+- name: Touch .bashrc
+  command: touch ~/.bashrc
+  sudo: yes
+  sudo_user: jenkins
+
+- name: Install nvm
+  shell: source /var/lib/jenkins/.bashrc && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+  sudo: yes
+  sudo_user: jenkins
+  environment:
+      HOME: "/var/lib/jenkins"
+  args:
+    executable: /bin/bash
+
+- name: Install node
+  shell: source /var/lib/jenkins/.bashrc && nvm install v6.9.1
+  sudo: yes
+  sudo_user: jenkins
+  environment:
+      HOME: "/var/lib/jenkins"
+  args:
+    executable: /bin/bash
+
+- name: Set default node version
+  shell: source /var/lib/jenkins/.bashrc && nvm alias default v6.9.1
+  sudo: yes
+  sudo_user: jenkins
+  environment:
+      HOME: "/var/lib/jenkins"
+  args:
+    executable: /bin/bash

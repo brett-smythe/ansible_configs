@@ -10,4 +10,4 @@
     - name: Restart steve-zissou
       supervisorctl: name=steve-zissou state=started
       sudo: yes
-      sudo_user: steve-zissoue
+      sudo_user: steve-zissou
