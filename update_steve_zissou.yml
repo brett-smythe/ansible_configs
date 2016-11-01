@@ -8,6 +8,7 @@
       HOME: "/var/lib/jenkins"
     args:
       chdir: "{{ playbook_dir }}/steve_zissou_static/"
+      executable: /bin/bash
 
   - name: Build steve_zissou static assets
     shell: source /var/lib/jenkins/.bashrc && ./build_prod_assets.sh
@@ -15,6 +16,7 @@
       HOME: "/var/lib/jenkins"
     args:
       chdir: "{{ playbook_dir }}/steve_zissou_static/"
+      executable: /bin/bash
 
 - name: Update to latest version of steve-zissou
   hosts: steve-zissou-service
