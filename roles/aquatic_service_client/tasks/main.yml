@@ -1,0 +1,5 @@
+- name: Create aquatic services location directory
+  file: path=/etc/opt/aquatic_services state=directory owner=root group=aquatic
+
+- name: Create aquatic services config file
+  template: src=../../../service_locations/service_locations.cfg.j2 dest=/etc/opt/aquatic_services/service_locations.cfg owner=root group=aquatic

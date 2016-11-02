@@ -5,6 +5,7 @@
   - supervisor
   - aquatic_group
   - diamond
+  - aquatic_service_client
   tasks:
   - name: Create interns user
     user: name=interns shell=/bin/bash password=$6$X65HxwxncnLq2u$7RU2FxqQFVPcmTT0ubNvNZTewEUORB1xT4lnmx/7dLn7rG54N6QmZdP5.mJKSain6L1xwCzoc.XyP79uGcxo.1 group=aquatic generate_ssh_key=yes
