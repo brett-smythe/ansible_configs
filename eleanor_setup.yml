@@ -24,7 +24,7 @@
     sudo_user: postgres
 
   - name: Copy postgresql conf
-    copy: src=postgres_configs/postgresql.conf dest=/etc/postgresql/9.4/main/pg_hba.conf owner=postgres group=postgres mode=640
+    copy: src=postgres_configs/postgresql.conf dest=/etc/postgresql/9.4/main/postgresql.conf owner=postgres group=postgres mode=640
 
   - name: Restart postgres
     service: name=postgresql state=restarted
