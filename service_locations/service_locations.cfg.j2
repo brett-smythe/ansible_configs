@@ -1,5 +1,5 @@
 [Eleanor]
-{% hostvars[groups['eleanor-service'][0]]['ansible_eth0'] is defined %}
+{% if hostvars[groups['eleanor-service'][0]]['ansible_eth0'] is defined %}
 ip_address = {{ hostvars[groups['eleanor-service'][0]]['ansible_eth0']['ipv4']['address'] }}
 {% else %}
 ip_address = {{ hostvars[groups['eleanor-service'][0]]['inventory_hostname'] }}
