@@ -32,3 +32,20 @@
 
   - name: Reload supervisor
     command: supervisorctl reload
+
+  - name: Copy nginx steve-zissou configs
+    copy: src=nginx_configs/steve-zissou dest=/etc/nginx/sites-available/steve-zissou
+
+  - name: Check to see if defauly ngninx config is in place
+    stat: path=/etc/nginx/sites-enabled/default
+    register: default_nginx
+
+  - name: Remove nginx defauly config if present
+    file: path=/etc/nginx/sites-enabled/default state=absent
+    when: default_nginx.stat.exists
+
+  - name: Symlink nginx steve_zissou configs
+    file: src=/etc/nginx/sites-available/steve-zissou dest=/etc/nginx/sites-enabled/steve-zissou state=link
+
+  - name: Reload nginx
+    service: name=nginx state=reloaded
