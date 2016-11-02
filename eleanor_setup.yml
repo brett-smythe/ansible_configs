@@ -1,4 +1,4 @@
-- name: Setup eleanor service requirements
+- name: Setup api-db service requirements
   hosts: api-db
   remote_user: root
   roles:
@@ -7,17 +7,30 @@
   - postgresql
   - aquatic_group
   tasks:
-  - name: Add eleanor user to Postgres
-  - lineinfile: dest=/etc/postgresql/9.4/main/pg_hba.conf regexp="^hosts+alls+alls+{{ ip_routing_prefix }}/24s+md5$" insertafter="^#sIPv4slocal.+" line="host     all             all            {{ ip_routing_prefix }}/24          md5"
-  - postgresql_user: name=eleanor password="is there life on mars"
-  - postgresql_db: name=eleanor owner=eleanor
+  - name: Include aquatic vars
+    include_vars: 'aquatic_vars.yml'
 
+  - name: Add local network access auth to postgres
+    lineinfile: dest=/etc/postgresql/9.4/main/pg_hba.conf regexp="^hosts+alls+alls+{{ ip_routing_prefix }}/24s+md5$" insertafter="^#sIPv4slocal.+" line="host     all             all            {{ ip_routing_prefix }}/24          md5"
+
+  - name: Create eleanor postgres user
+    postgresql_user: name=eleanor password="is there life on mars"
+    sudo: yes
+    sudo_user: postgres
+
+  - name: Create eleanor database
+    postgresql_db: name=eleanor owner=eleanor
+    sudo: yes
+    sudo_user: postgres
+
+- name: Setup eleanor service requirements
   hosts: eleanor-service
   remote_user: root
   roles:
   - virtualenv
   - supervisor
   - aquatic_group
+  - aquatic_service_client
   tasks:
   - name: Create user eleanor
     user: name=eleanor shell=/bin/bash password=$6$Noqb1/cqYh$GslCHsq9IpFZUGMXI4isCTySVGtUXdVJrU2oIQlfznSm33eykkpiwbGCaGHFTFZxR6prrx.gf7uflWcbnxb/v1 group=aquatic generate_ssh_key=yes
