@@ -5,6 +5,7 @@
   - virtualenv
   - supervisor
   - aquatic_group
+  - aquatic_service_client
   tasks:
   - name: Include vars
     include_vars: 'aquatic_vars.yml'
