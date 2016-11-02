@@ -11,10 +11,10 @@
     include_vars: 'aquatic_vars.yml'
 
   - name: Add local network access auth to postgres
-    lineinfile: dest=/etc/postgresql/9.4/main/pg_hba.conf regexp="^hosts+alls+alls+{{ ip_routing_prefix }}/24s+md5$" insertafter="^#sIPv4slocal.+" line="host     all             all            {{ ip_routing_prefix }}/24          md5"
+    lineinfile: dest=/etc/postgresql/9.4/main/pg_hba.conf regexp="^host\W+all\W+all\W+{{ ip_routing_prefix }}/24\W+md5$" insertafter="^# IPv4 local.+" line="host     all             all            {{ ip_routing_prefix }}/24          md5"
 
   - name: Create eleanor postgres user
-    postgresql_user: name=eleanor password="is there life on mars"
+    postgresql_user: name=eleanor password="md52378aac29dd2e61695dfc3db0fdf528e" encrypted=yes
     sudo: yes
     sudo_user: postgres
 
@@ -22,6 +22,9 @@
     postgresql_db: name=eleanor owner=eleanor
     sudo: yes
     sudo_user: postgres
+
+  - name: Restart postgres
+    service: name=postgresql state=restarted
 
 - name: Setup eleanor service requirements
   hosts: eleanor-service
