@@ -35,6 +35,12 @@
   - virtualenv
   - jenkins
   tasks:
+    - name: Create jenkins user
+      user: name=jenkins groups=pypidist append=yes shell=/bin/bash generate_ssh_key=yes
+
+    - name: Create build directory
+      file: path=/home/jenkins/builds state=directory owner=jenkins group=jenkins
+
     - name: Add jenkins parent ssh key to child
       authorized_key:
         user: jenkins
