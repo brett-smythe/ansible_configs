@@ -1,3 +1,6 @@
+- name: Install opendjk-7-jdk
+  apt: name=openjdk-7-jdk state=latest
+
 - name: Install debhelper
   apt: name=debhelper state=latest
 

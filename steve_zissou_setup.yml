@@ -34,6 +34,9 @@
   - name: Reload supervisor
     command: supervisorctl reload
 
+  - name: Install nginx
+    apt: name=nginx state=latest
+
   - name: Copy nginx steve-zissou configs
     copy: src=nginx_configs/steve-zissou dest=/etc/nginx/sites-available/steve-zissou
 
