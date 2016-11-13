@@ -54,3 +54,6 @@
 
     - name: Install openjdk-7-jre on jenkins child node
       apt: name=openjdk-7-jre state=latest
+
+    - name: Add jenkins user to aquatic group
+      user: name=jenkins groups=aquatic append=yes
