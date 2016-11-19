@@ -1,6 +1,6 @@
 [submodule "steve_zissou_static"]
 	path = steve_zissou_static
-	url = git@github.com:brett-smythe/steve_zissou_static.git
+	url = https://github.com/brett-smythe/steve_zissou_static.git
 [submodule "steve_zissou"]
 	path = steve_zissou
-	url = git@github.com:brett-smythe/steve_zissou.git
+	url = https://github.com/brett-smythe/steve_zissou.git
