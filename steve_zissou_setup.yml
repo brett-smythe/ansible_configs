@@ -25,8 +25,14 @@
   - name: Create templates directory for steve-zissou
     file: path=/opt/steve-zissou/templates/ state=directory owner=steve-zissou group=aquatic
 
-  - name: Create static directory for steve-zissou
-    file: path=/opt/steve-zissou/static/ state=directory owner=steve-zissou group=aquatic
+  - name: Create css static directory for steve-zissou
+    file: path=/opt/steve-zissou/static/css/ state=directory owner=steve-zissou group=aquatic
+  - name: Create fonts static directory for steve-zissou
+    file: path=/opt/steve-zissou/static/fonts/ state=directory owner=steve-zissou group=aquatic
+  - name: Create js static directory for steve-zissou
+    file: path=/opt/steve-zissou/static/js/ state=directory owner=steve-zissou group=aquatic
+  - name: Create images static directory for steve-zissou
+    file: path=/opt/steve-zissou/static/images/ state=directory owner=steve-zissou group=aquatic
 
   - name: Reread new supervisor config
     command: supervisorctl reread
