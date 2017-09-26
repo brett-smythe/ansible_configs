@@ -1,5 +1,5 @@
-- name: Install opendjk-7-jdk
-  apt: name=openjdk-7-jdk state=latest
+- name: Install opendjk-8-jre-headless
+  apt: name=openjdk-8-jre-headless state=latest
 
 - name: Install debhelper
   apt: name=debhelper state=latest
