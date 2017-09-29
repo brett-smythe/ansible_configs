@@ -1,5 +1,5 @@
 - hosts: interns-twitter
-  remote_user: root
+  become: true
   roles:
   - virtualenv
   - supervisor
